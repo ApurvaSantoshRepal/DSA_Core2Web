@@ -4,7 +4,7 @@
 import java.util.Scanner;
 
  
-class AutomorphicNumber{
+class RecursionDemo{
 	public static void main(String[] args){
  
 
@@ -19,7 +19,7 @@ class AutomorphicNumber{
         }
     }
 
-    public static boolean isAutomorphic(int number) {
+    static boolean isAutomorphic(int number) {
         if (number == 0) {
             return true;
         }
