@@ -12,3 +12,22 @@ present in the matrix.
 
 target element 5, the function should return true, as 5 is present in the matrix.
 */
+
+
+import java.util.*
+class BinarySearchProblem{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of array");
+		int size = sc.nextInt();
+		int arr[]=new int[size];
+		System.out.println("Enter Elements in array");
+		for(int i=0;i<size;i++){
+			arr[i]=sc.nextInt();
+		}
+		System.out.println("Enter key: ");
+		int key= sc.nextInt();
+	}
+}
+
+
