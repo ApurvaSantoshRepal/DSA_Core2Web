@@ -14,20 +14,55 @@ target element 5, the function should return true, as 5 is present in the matrix
 */
 
 
-import java.util.*
+import java.util.*;
 class BinarySearchProblem{
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the size of array");
-		int size = sc.nextInt();
-		int arr[]=new int[size];
+		System.out.println("Enter the row of array");
+		int row = sc.nextInt();
+		System.out.println("Enter the col of array");
+		int col = sc.nextInt();
+		int arr[][]=new int[row][col];
 		System.out.println("Enter Elements in array");
-		for(int i=0;i<size;i++){
-			arr[i]=sc.nextInt();
+		for(int i=0;i<row;i++){
+			for(int j=0;j<col;j++){
+
+			arr[i][j]=sc.nextInt();
 		}
-		System.out.println("Enter key: ");
-		int key= sc.nextInt();
+		}
+		System.out.println("Enter target: ");
+		int target= sc.nextInt();
+		boolean flag = searchElement(arr,row-1,col-1,target);
+		System.out.println(flag);
 	}
+        static boolean searchElement(int arr[][] , int row , int col,int target){
+		if (row<0){
+		       return false;
+		}
+                if (searchInRow(arr,0,col,row,target)){
+	         return true;
+		}
+               else {
+                 return searchElement(arr,row-1,col,target);
+	       }
+	}
+        static boolean searchInRow(int arr[][],int start,int col,int row,int target){
+		if(start>col)
+			return false;
+		int mid = (start+col)/2;
+		if (arr[row][mid]==target){
+			return true;
+		}
+		else if(arr[row][mid]>target){
+			return searchInRow(arr,start,mid-1,row,target);
+		}
+		else{
+			return searchInRow(arr,mid+1,col,row,target);
+		}
+
+	}	
+
+
 }
 
 
