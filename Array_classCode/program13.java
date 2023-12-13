@@ -1,4 +1,4 @@
-// rotation of array toword right
+// rotation of array towords right
 //
 //
 import java.io.*;

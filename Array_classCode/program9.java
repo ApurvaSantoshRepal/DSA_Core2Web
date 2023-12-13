@@ -13,7 +13,7 @@ class ArrayDemo{
                 System.out.println("First Index  : ");
 		int startIndex = Integer.parseInt(br.readLine());
 		System.out.println("Second Index  : ");
-                                   int endIndex = Integer.parseInt(br.readLine());		
+        int endIndex = Integer.parseInt(br.readLine());		
 
 		System.out.println("Sum Between given  : "+sumBetweenIndex(arr,startIndex,endIndex));
                
