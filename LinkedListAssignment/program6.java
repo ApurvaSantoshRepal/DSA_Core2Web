@@ -37,7 +37,7 @@ class Node {
 }
 class SinglyLinkedList{
 	Node head = null;
-	//add
+	//addFirst
 	void addNode(int data){
         	Node newNode = new Node(data);
 		if(head==null){
@@ -48,8 +48,84 @@ class SinglyLinkedList{
 			head=newNode;
 		}
 	}
+
+	
+	//reverse Node 
+        static Node reverse(Node head1){
+		
+		if (head1 == null){
+			return null;
+		}
+	       Node forward=null;
+	       Node curr = head1;
+	       Node prev = null;
+	       while (curr != null){
+		       forward = curr.next;
+		       curr.next=prev;
+		       prev = curr;
+		       curr=forward;
+	       }
+	       head1= prev;
+	       printSLL(head1);
+	       return head1;
+	}
+	//addTwo Nodes 
+         static  Node addTwoNode(Node L1 , Node L2){
+		
+		if (L1==null){
+			return L2;
+		}
+		else if (L2==null){
+			return L1;
+		}
+		else {
+			
+			int carry=0;
+		   
+			Node head = null;
+			
+                       
+
+			while (L1 !=null || L2 != null || carry != 0){
+				
+				int data1 = 0;
+				int data2 = 0;
+				if (L1 != null){
+					data1=L1.data;
+				}
+				if (L2 != null){
+					data2=L2.data;
+				}
+				int sum = data1+data2+carry;
+				int digit = sum %10;
+				carry = sum /10;
+			        Node newNode = new Node(digit);
+				if (head==null){
+					
+					head = newNode;
+				}
+				else{
+		
+					newNode.next= head;
+					head=newNode;
+				}
+
+				if (L1 != null){
+					L1=L1.next;
+				}
+				if(L2 != null){
+					L2=L2.next;
+				}
+			}
+		
+			
+			return head;
+		}
+	 }
+
+
 	//print
-	void printSLL(){
+	 static void printSLL(Node head){
 		if (head==null){
 			System.out.println("Linnked List is Empty");
 		}
@@ -65,13 +141,30 @@ class SinglyLinkedList{
 }
 class Client {
 	public static void main (String[] args){
-		SinglyLinkedList sll = new SinglyLinkedList();
-		sll.addNode(10);
-		sll.addNode(20);
-		sll.addNode(30);
-		sll.addNode(40);
-		sll.addNode(50);
-		sll.addNode (60);
-		sll.printSLL();
+		SinglyLinkedList L1 = new SinglyLinkedList();
+		SinglyLinkedList L2 = new SinglyLinkedList();
+		SinglyLinkedList L3 = new SinglyLinkedList();
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the size of L1");
+		int size1 = sc.nextInt();
+		System.out.println("Enter data in L1");
+		for (int i= 1;i<=size1;i++){
+			L1.addNode(sc.nextInt());
+		}
+		System.out.println("Enter size of L2");
+		int size2 = sc.nextInt();
+		System.out.println("Enter data in L2");
+		for (int i =1;i<=size2;i++){
+			L2.addNode(sc.nextInt());
+		}
+	        
+	
+                Node head1 =SinglyLinkedList.addTwoNode(L1.head,L2.head);
+		SinglyLinkedList.printSLL(head1);
+                
+
+       
+		
 	}
 }
