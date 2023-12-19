@@ -58,16 +58,34 @@ class SinglyLinkedList{
 			System.out.println(temp.data);
 		}
 	}
+	void removeDuplicates(){
+             Node curr = head;
+	     while (curr != null){
+		     Node temp = curr;
+		     while(temp != null && curr.data==temp.data){
+			     temp = temp.next;
+		     }
+		     curr.next = temp;
+		     curr=temp;
+	     }
+	}
+
 }
 class Client {
 	public static void main (String[] args){
 		SinglyLinkedList sll = new SinglyLinkedList();
-		sll.addNode(10);
-		sll.addNode(20);
-		sll.addNode(30);
-		sll.addNode(40);
-		sll.addNode(50);
-		sll.addNode (60);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Size of Linked List");
+		int size = sc.nextInt();
+	        System.out.println("Enter Elements in Linked List");
+		for (int i= 1;i<=size;i++){
+			sll.addNode(sc.nextInt());
+		}
+
 		sll.printSLL();
+		System.out.println("After remove duplicate elements:");
+		sll.removeDuplicates();
+		sll.printSLL();
+
 	}
 }

@@ -1,32 +1,7 @@
 /*
-7. Swap Kth nodes from ends
-Given a singly linked list of size N, and an integer K. You need to swap the Kth node from the
-beginning and Kth node from the end of the linked list. Swap the nodes through the links. Do not
-change the content of the nodes.
-
-Example 1:
-Input:
-N = 4, K = 1
-value[] = {1,2,3,4}
-Output: 1
-Explanation: Here K = 1, hence after swapping the 1st node from the beginning and end the
-new list will be 4 2 3 1.
-
-Example 2:
-Input:
-N = 5, K = 7
-value[] = {1,2,3,4,5}
-Output: 1
-Explanation: K > N. Swapping is invalid. Return the head node as it is.
-Expected Time Complexity: O(n)
-Expected Auxiliary space Complexity: O(1)
-
-Constraints:
-1 <= N <= 10^3
-1 <= K <= 10^3
-
+Problem Statement 7:
+Swap kth node from start and end 
 */
-
 
 
 import java.util.*;
@@ -51,7 +26,7 @@ class SinglyLinkedList{
 		}
 	}
 	//print
-	void printSLL(){
+	void printSLL(Node head){
 		if (head==null){
 			System.out.println("Linnked List is Empty");
 		}
@@ -64,16 +39,72 @@ class SinglyLinkedList{
 			System.out.println(temp.data);
 		}
 	}
+	//countNode
+	int countNode(){
+		int count = 0;
+		Node temp = head;
+		while(temp != null){
+			count++;
+			temp = temp.next;
+		}
+		return count;
+	}
+	//swap kth Node
+	Node swapKthNode(int k ){
+		
+		int count = countNode();
+		if (k>count || k*2-1==count){
+			return head;
+		}
+		Node x = head;
+		Node x_prev = null;
+		for (int i=1;i<k;i++){
+			x_prev=x;
+			x=x.next;
+		}
+		Node y=head;
+		Node y_prev=null;
+		for(int i=1;i<count-k+1;i++){
+			y_prev=y;
+			y=y.next;
+		}
+		if(x_prev != null){
+			x_prev.next=y;
+		}
+		if(y_prev != null){
+			y_prev.next = x;
+		}
+
+		Node temp = y.next;
+		y.next=x.next;
+		x.next=temp;
+		if(k==1){
+			head=y;
+		}
+		if(k==count){
+			head=x;
+		}
+		return head;
+	}
 }
 class Client {
 	public static void main (String[] args){
 		SinglyLinkedList sll = new SinglyLinkedList();
+		Scanner sc = new Scanner(System.in);
 		sll.addNode(10);
 		sll.addNode(20);
 		sll.addNode(30);
 		sll.addNode(40);
 		sll.addNode(50);
 		sll.addNode (60);
-		sll.printSLL();
+		sll.printSLL(sll.head);
+		System.out.println("Enter the value of k");
+		int k = sc.nextInt();
+		Node head = sll.swapKthNode(k);
+		System.out.println("After swap");
+		sll.printSLL(head);
+	
+
+
 	}
 }

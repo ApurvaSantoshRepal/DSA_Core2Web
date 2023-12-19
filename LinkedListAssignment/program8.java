@@ -62,6 +62,22 @@ class SinglyLinkedList{
 			System.out.println(temp.data);
 		}
 	}
+	//delNode
+        void delNode(Node delNode){
+	if (delNode ==null){
+
+		return;
+	}else{
+	if(delNode.next==null){
+		delNode=null;
+		return;
+	}
+	}
+	delNode.data=delNode.next.data;
+	delNode.next=delNode.next.next;
+					
+	}
+	
 }
 class Client {
 	public static void main (String[] args){
@@ -73,5 +89,11 @@ class Client {
 		sll.addNode(50);
 		sll.addNode (60);
 		sll.printSLL();
+		sll.delNode(sll.head.next.next.next.next);
+		System.out.println("After delete:");
+		sll.printSLL();
+
+
+
 	}
 }
