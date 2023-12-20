@@ -105,12 +105,19 @@ class SinglyLinkedList{
 		       }
 	       }	    
 	       if (flag){
+		       Node start = head;
 		       int count = 1;
-		       slow=slow.next;
-		       while (slow != fast){
+		       
+		       while ( slow != start){
 			       slow= slow.next;
-			       count++;
+			       start=start.next;
 		       }
+		       
+		       while(slow.next != start){
+			       count++;
+			       slow=slow.next;
+		       }
+
                return count;
 	       }
 	       else {
